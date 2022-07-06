@@ -128,7 +128,17 @@ public class Menu extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		// TODO Auto-generated method stub
-//		
+                  if (e.getSource() == btn1) {
+			this.dispose();
+			try {
+				new ListSWFrame();
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		}
+
+
 		}
 
 }
