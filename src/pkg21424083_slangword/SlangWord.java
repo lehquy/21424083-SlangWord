@@ -121,14 +121,14 @@ public class SlangWord {
 			s[i][1] = (String) slagList[index];
 			List<String> meaning = map.get(slagList[index]);
 			s[i][2] = meaning.get(0);
-			System.out.println(s[i][0] + "\t" + s[i][1] + "\t" + s[i][2]);
+//			
 			for (int j = 1; j < meaning.size(); j++) {
 				if (i < sizeMap)
 					i++;
 				s[i][0] = String.valueOf(i);
 				s[i][1] = (String) slagList[index];
 				s[i][2] = meaning.get(j);
-				System.out.println(s[i][0] + "\t" + s[i][1] + "\t" + s[i][2]);
+//				
 			}
 			index++;
 		}

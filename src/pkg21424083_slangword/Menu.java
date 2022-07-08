@@ -136,7 +136,51 @@ public class Menu extends JFrame implements ActionListener {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
+		}else if (e.getSource() == btn2) {
+			System.out.println("Change Actitity");
+			this.dispose();
+			try {
+				new FindSWFrame();
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+
+		} else if (e.getSource() == btn3) {
+			// Add a slang word
+			this.dispose();
+			new AddWordFrame();
+
+		} else if (e.getSource() == btn4) {
+			this.dispose();
+			new RandomFrame();
+
+		} else if (e.getSource() == btn5) {
+			this.dispose();
+			new HistoryFrame();
+
+		} else if (e.getSource() == btn6) {
+			this.dispose();
+			try {
+				new DeleteFrame();
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+		} else if (e.getSource() == btn7) {
+			// default icon, custom title
+			int n = JOptionPane.showConfirmDialog(this, "Do you really want to reset Slang Word?", "An Inane Question",
+					JOptionPane.YES_NO_OPTION);
+			if (n == 0) {
+				slangWord.reset();
+				JOptionPane.showMessageDialog(this, "Reset success.");
+			}
+		} else if (e.getSource() == btn8) {
+			this.dispose();
+			new QuizFrame();
 		}
+                  
+                  
 
 
 		}
