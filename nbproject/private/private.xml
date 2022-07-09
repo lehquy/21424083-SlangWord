@@ -4,10 +4,16 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/C:/Users/LeQuy/Documents/NetBeansProjects/21424083_SlangWord/src/pkg21424083_slangword/FindSWFrame.java</file>
+            <file>file:/C:/Users/LeQuy/Documents/NetBeansProjects/21424083_SlangWord/src/pkg21424083_slangword/DeleteFrame.java</file>
+            <file>file:/C:/Users/LeQuy/Documents/NetBeansProjects/21424083_SlangWord/src/pkg21424083_slangword/AddWordFrame.java</file>
+            <file>file:/C:/Users/LeQuy/Documents/NetBeansProjects/21424083_SlangWord/src/pkg21424083_slangword/QuestionFrame.java</file>
             <file>file:/C:/Users/LeQuy/Documents/NetBeansProjects/21424083_SlangWord/src/pkg21424083_slangword/Main.java</file>
             <file>file:/C:/Users/LeQuy/Documents/NetBeansProjects/21424083_SlangWord/src/pkg21424083_slangword/Menu.java</file>
             <file>file:/C:/Users/LeQuy/Documents/NetBeansProjects/21424083_SlangWord/src/pkg21424083_slangword/ListSWFrame.java</file>
+            <file>file:/C:/Users/LeQuy/Documents/NetBeansProjects/21424083_SlangWord/src/pkg21424083_slangword/HistoryFrame.java</file>
             <file>file:/C:/Users/LeQuy/Documents/NetBeansProjects/21424083_SlangWord/src/pkg21424083_slangword/SlangWord.java</file>
+            <file>file:/C:/Users/LeQuy/Documents/NetBeansProjects/21424083_SlangWord/src/pkg21424083_slangword/QuizFrame.java</file>
+            <file>file:/C:/Users/LeQuy/Documents/NetBeansProjects/21424083_SlangWord/src/pkg21424083_slangword/RandomFrame.java</file>
         </group>
     </open-files>
 </project-private>

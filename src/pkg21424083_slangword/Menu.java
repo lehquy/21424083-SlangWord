@@ -45,7 +45,7 @@ public class Menu extends JFrame implements ActionListener {
 
                     //Third colour : R=0,G=142,B=140
                     a.add(new ColorUIResource(0,142,140));
-		JLabel label = new JLabel("Slang Words");
+		JLabel label = new JLabel("21424083");
 		label.setForeground(Color.green);
 		label.setFont(new Font("NewellsHand", Font.PLAIN, 35));
 		label.setAlignmentX(CENTER_ALIGNMENT);
@@ -169,11 +169,11 @@ public class Menu extends JFrame implements ActionListener {
 			}
 		} else if (e.getSource() == btn7) {
 			// default icon, custom title
-			int n = JOptionPane.showConfirmDialog(this, "Do you really want to reset Slang Word?", "An Inane Question",
+			int n = JOptionPane.showConfirmDialog(this, "Ban co muon reset SlangWord?", "Thong bao",
 					JOptionPane.YES_NO_OPTION);
 			if (n == 0) {
 				slangWord.reset();
-				JOptionPane.showMessageDialog(this, "Reset success.");
+				JOptionPane.showMessageDialog(this, "Reset thanh cong.");
 			}
 		} else if (e.getSource() == btn8) {
 			this.dispose();

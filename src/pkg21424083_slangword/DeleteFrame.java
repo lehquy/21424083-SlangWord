@@ -25,23 +25,26 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-import javax.swing.event.TableModelEvent;
-import javax.swing.event.TableModelListener;
+import javax.swing.ListSelectionModel;
+import javax.swing.event.ListSelectionEvent;
+import javax.swing.event.ListSelectionListener;
 import javax.swing.table.DefaultTableCellRenderer;
+import javax.swing.table.DefaultTableModel;
 
-public class ListSWFrame extends JFrame implements ActionListener, TableModelListener {
+public class DeleteFrame extends JFrame implements ActionListener, ListSelectionListener {
 	JButton btnBack;
-	JTable jTable;
+	JTable jt;
 	SlangWord slangWord;
-	String dataCopy[][];
+	DefaultTableModel model;
+	String data[][];
 
-	public ListSWFrame() throws Exception {
+	public DeleteFrame() throws Exception {
 		Container con = this.getContentPane();
 		slangWord = SlangWord.getInstance();
 
 		// Label
 		JLabel titleLabel = new JLabel();
-		titleLabel.setText("List Slang Words");
+		titleLabel.setText("Chon SlangWord can xoa ");
 		titleLabel.setForeground(Color.green);
 		titleLabel.setFont(new Font("Gill Sans MT", Font.PLAIN, 35));
 		titleLabel.setAlignmentX(CENTER_ALIGNMENT);
@@ -59,21 +62,22 @@ public class ListSWFrame extends JFrame implements ActionListener, TableModelLis
 		// List Slang Words
 		JPanel panelTable = new JPanel();
 		panelTable.setBackground(Color.black);
-		String data[][] = slangWord.getData();
-		dataCopy = slangWord.getData();
+		data = slangWord.getData();
 		String column[] = { "STT", "Slag", "Meaning" };
 		resultLabel.setText("Ta co " + data.length + " slang words");
-		jTable = new JTable(data, column);
-		jTable.setRowHeight(30);
+		jt = new JTable(new DefaultTableModel(column, 0));
+		model = (DefaultTableModel) jt.getModel();
+		jt.setRowHeight(30);
 		DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
 		centerRenderer.setHorizontalAlignment(JLabel.CENTER);
-		jTable.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
-		jTable.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
-		jTable.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
-		// jTable.putClientProperty("terminateEditOnFocusLost", true);
-		jTable.getModel().addTableModelListener(this);
+		jt.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+		jt.getColumnModel().getColumn(1).setCellRenderer(centerRenderer);
+		jt.getColumnModel().getColumn(2).setCellRenderer(centerRenderer);
 
-		JScrollPane sp = new JScrollPane(jTable);
+		ListSelectionModel selectionModel = jt.getSelectionModel();
+
+		selectionModel.addListSelectionListener(this);
+		JScrollPane sp = new JScrollPane(jt);
 		panelTable.setLayout(new BoxLayout(panelTable, BoxLayout.X_AXIS));
 		panelTable.add(sp);
 
@@ -96,12 +100,13 @@ public class ListSWFrame extends JFrame implements ActionListener, TableModelLis
 		con.add(Box.createRigidArea(new Dimension(0, 20)));
 		con.add(bottomPanel);
 		// Setting JFrame
-		this.setTitle("Danh sach Slang Words");
+		this.setTitle("List Slang Words");
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		this.setVisible(true);
 		this.setSize(700, 700);
 		Dimension dim = Toolkit.getDefaultToolkit().getScreenSize();
 		this.setLocation(dim.width / 2 - this.getSize().width / 2, dim.height / 2 - this.getSize().height / 2);
+		addRow();
 	}
 
 	@Override
@@ -109,25 +114,36 @@ public class ListSWFrame extends JFrame implements ActionListener, TableModelLis
 		// TODO Auto-generated method stub
 		if (e.getSource() == btnBack) {
 			this.dispose();
-			new Menu();
+						new Menu();
+		}
+	}
+
+	public void addRow() {
+		int size = data.length;
+		for (int i = 0; i < size; i++) {
+			String ss[] = data[i];
+			model.addRow(ss);
 		}
 	}
 
 	@Override
-	public void tableChanged(TableModelEvent e) {
+	public void valueChanged(ListSelectionEvent e) {
 		// TODO Auto-generated method stub
-		int row = jTable.getSelectedRow();
-		int col = jTable.getSelectedColumn();
+		int row = jt.getSelectedRow();
+		int col = jt.getSelectedColumn();
 		if (row == -1 || col == -1)
 			return;
-		String Data = (String) jTable.getValueAt(row, col);
-		// System.out.println("Table element selected is: " + Data);
+		String Data = (String) jt.getValueAt(row, 1);
 
-		if (col == 2) {
-			// edit meaning
-			System.out.println("Old SlangWord: \t" + row + "\t" + dataCopy[row][2]);
-			slangWord.set((String) jTable.getValueAt(row, 1), dataCopy[row][2], (String) jTable.getValueAt(row, 2));
-			JOptionPane.showMessageDialog(this, "Updated a row.");
+		System.out.println("Table element selected is: " + Data);
+		int n = JOptionPane.showConfirmDialog(this, "Ban co mua xoa SlangWord nay ?", "Thong bao",
+				JOptionPane.YES_NO_OPTION);
+		if (n == 0) {
+			slangWord.delete(Data, (String) jt.getValueAt(row, 2));
+			// default title and icon
+			model.removeRow(row);
+			JOptionPane.showMessageDialog(this, "Deleted success");
+
 		}
 	}
 }
